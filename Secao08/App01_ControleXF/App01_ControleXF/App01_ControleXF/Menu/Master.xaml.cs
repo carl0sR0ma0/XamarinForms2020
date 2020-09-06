@@ -25,5 +25,9 @@ namespace App01_ControleXF.Menu
         {
             Detail = new Controles.ProgressBarPage();
         }
+        private void GoBoxViewPage(object sender, EventArgs args)
+        {
+            Detail = new Controles.BoxViewPage();
+        }
     }
 }
