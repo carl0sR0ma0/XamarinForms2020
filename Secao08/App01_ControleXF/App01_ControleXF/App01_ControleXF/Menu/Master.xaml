@@ -20,11 +20,18 @@
                     <Button Text="Slider/Stepper" Clicked="GoSliderStepperPage" />
                     <Button Text="Switch" Clicked="GoSwitchPage" />
                     <Button Text="Image" Clicked="GoImagePage" />
+                    <Button Text="ListView" Clicked="GoListViewPage" />
+                    <Button Text="TableView" Clicked="GoTableViewPage" />
+                    <Button Text="WebView" Clicked="GoWebViewPage" />
                 </StackLayout>
             </ScrollView>
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <page:MainPage />
+        <NavigationPage>
+            <x:Arguments>
+                <page:MainPage />
+            </x:Arguments>
+        </NavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>
