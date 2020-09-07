@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,7 +22,7 @@ namespace App01_ControleXF.Controles
             empresasTI.Add("IBM");
             empresasTI.Add("SAP");
             empresasTI.Add("Uber");
-            empresasTI.Add("99Taxi");            
+            empresasTI.Add("99Taxi");
 
             Preencher(empresasTI);
         }
@@ -48,7 +46,7 @@ namespace App01_ControleXF.Controles
         private void PesquisarButton(object sender, EventArgs args)
         {
             var resultado = empresasTI.Where(a => a.Contains(((SearchBar)sender).Text)).ToList<String>();
-            
+
             Preencher(resultado);
         }
     }

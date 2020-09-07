@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,7 +17,7 @@ namespace App01_ControleXF.Controles
                 Lbl_Duplicado.Text = args.NewTextValue;
             };
 
-            TxtComentario.Completed += delegate(object sender, EventArgs args)
+            TxtComentario.Completed += delegate (object sender, EventArgs args)
             {
                 LblQtdCaracteres.Text = TxtComentario.Text.Length.ToString();
             };

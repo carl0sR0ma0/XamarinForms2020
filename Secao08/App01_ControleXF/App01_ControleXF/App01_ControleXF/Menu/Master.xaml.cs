@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -64,6 +60,10 @@ namespace App01_ControleXF.Menu
         private void GoSwitchPage(object sender, EventArgs args)
         {
             Detail = new Controles.SwitchPage();
+        }
+        private void GoImagePage(object sender, EventArgs args)
+        {
+            Detail = new Controles.ImagePage();
         }
     }
 }
