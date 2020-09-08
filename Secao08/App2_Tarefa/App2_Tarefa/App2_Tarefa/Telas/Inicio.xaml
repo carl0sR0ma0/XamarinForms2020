@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2_Tarefa.Telas.Inicio">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout BackgroundColor="Blue" HeightRequest="250">
+                <Label Text="Meu Dia" FontSize="24" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White" />
+                <Label Text="" x:Name="DataHoje"  HorizontalOptions="Start" VerticalOptions="End" TextColor="White" />
+            </StackLayout>
+
+            <StackLayout x:Name="SLTarefas" Padding="10" Spacing="10">
+                <StackLayout Orientation="Horizontal">
+                    <Image VerticalOptions="Center" Source="CheckOff.png" />
+                    <Label VerticalOptions="Center" HorizontalOptions="FillAndExpand" Text="Task 1" />
+                    <Image VerticalOptions="Center" Source="img4.png" />
+                    <Image VerticalOptions="Center" Source="Delete.png" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Image VerticalOptions="Center" Source="CheckOn.png" />
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Spacing="0">
+                        <Label Text="Task 1" TextColor="LightGray" />
+                        <Label Text="Finalizado em 20/01/2018 - 17:00h" TextColor="LightGray" FontSize="10" />
+                    </StackLayout>
+                    <Image VerticalOptions="Center" Source="img2.png" />
+                    <Image VerticalOptions="Center" Source="Delete.png" />
+                </StackLayout>
+            </StackLayout>
+
+            <Button HorizontalOptions="Center" BackgroundColor="Transparent" Clicked="ActionGoCadastro">
+                <Button.Image>
+                    <OnPlatform x:TypeArguments="FileImageSource">
+                        <On Platform="Android, iOS" Value="AddBotao.png" />
+                        <!--<On Platform="UWP" Value="Resources/AddBotao.png" />-->
+                    </OnPlatform>
+                </Button.Image>
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
