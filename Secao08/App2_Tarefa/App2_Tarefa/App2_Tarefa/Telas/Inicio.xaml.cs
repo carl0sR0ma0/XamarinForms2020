@@ -1,6 +1,7 @@
 ﻿using App2_Tarefa.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,10 @@ namespace App2_Tarefa.Telas
         {
             InitializeComponent();
 
-            DataHoje.Text = DateTime.Now.DayOfWeek.ToString() + "," + DateTime.Now.ToString("dd/MM");
+            CultureInfo culture = new CultureInfo("pt-BR");
+            string Data = DateTime.Now.ToString("dddd, dd {0} MMMM {0} yyyy", culture); //DayOfWeek.ToString() + "," + DateTime.Now.ToString("dd/MM");
+
+            DataHoje.Text = string.Format(Data, "de");
 
             CarregarTarefas();
         }
@@ -31,18 +35,28 @@ namespace App2_Tarefa.Telas
 
             List<Tarefa> Lista = new GerenciadorTarefa().Listagem();
 
+            int i = 0;
             foreach (Tarefa tarefa in Lista)
             {
-                LinhaStackLayout(tarefa);
+                LinhaStackLayout(tarefa, i);
+                i++;
             }
         }
-        public void LinhaStackLayout(Tarefa tarefa)
+        public void LinhaStackLayout(Tarefa tarefa, int index)
         {
             Image Exclusao = new Image() { VerticalOptions = LayoutOptions.Center, Source = ImageSource.FromFile("Delete.png") };
             if (Device.RuntimePlatform == Device.UWP)
             {
                 Exclusao.Source = ImageSource.FromFile("Resources/Delete.png");
             }
+            TapGestureRecognizer DeleteTap = new TapGestureRecognizer();
+            DeleteTap.Tapped += delegate
+            {
+                new GerenciadorTarefa().Deletar(index);
+                CarregarTarefas();
+            };
+
+            Exclusao.GestureRecognizers.Add(DeleteTap);
             
             Image Prioridade = new Image() { VerticalOptions = LayoutOptions.Center, Source = ImageSource.FromFile("img" + tarefa.Prioridade + ".png") };
             if (Device.RuntimePlatform == Device.UWP)
@@ -69,6 +83,23 @@ namespace App2_Tarefa.Telas
             {
                 Check.Source = ImageSource.FromFile("Resources/CheckOff.png");
             }
+            if (tarefa.DataFinalizacao != null)
+            {
+                Check.Source = ImageSource.FromFile("CheckOn.png");
+                if (Device.RuntimePlatform == Device.UWP)
+                {
+                    Check.Source = ImageSource.FromFile("Resources/CheckOn.png");
+                }
+            }
+
+            TapGestureRecognizer CheckTap = new TapGestureRecognizer();
+            CheckTap.Tapped += delegate
+            {
+                new GerenciadorTarefa().Finalizar(index, tarefa);
+                CarregarTarefas();
+            };
+
+            Check.GestureRecognizers.Add(CheckTap);
 
             StackLayout Linha = new StackLayout() { Orientation = StackOrientation.Horizontal, Spacing = 15 };
 
